@@ -5,6 +5,7 @@ dotenv.config();
 class Connection {
     constructor() {
         this.client = new MongoClient(this.getUri());
+        this.db = null;
     }
 
     getUri() {
