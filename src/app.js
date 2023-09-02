@@ -9,6 +9,8 @@ import dotenv from "dotenv";
 import SetupDb from "./db/SetupDb.js";
 import { schemas } from "./models/schemas/index.js";
 import ClientError from "./utils/ClientError.js";
+import { limitUsuario } from "./helpers/LimitHelper.js";
+import passport from "./helpers/PassportHelper.js";
 
 dotenv.config();
 
@@ -66,7 +68,11 @@ class App extends Connection {
     initMiddlewares() {
         this.app.use(express.json());
         this.app.use(cors());
+        this.app.use(express.urlencoded({ extended: true }));
         this.app.use(morgan("dev"));
+        // this.app.use(limitUsuario(), passport.authenticate('bearer', {
+        //     session: false
+        // }) )
         this.app.use((err, _req, res, _next) => {
             const { statusCode, message } = err;
             resError(res, statusCode, message);

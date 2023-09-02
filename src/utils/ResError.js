@@ -1,7 +1,7 @@
 const resError = (res, status, message) => {
     res.status(status).json({
         error: true,
-        message
+        message: message
     })
 }
 export default resError
