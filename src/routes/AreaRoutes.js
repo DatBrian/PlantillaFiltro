@@ -15,26 +15,25 @@ class AreaRoutes {
     }
 
     async initRoutes() {
-        try {
-            this.router.get(
-                `${this.path}/all`,
+        this.router.use(
+            limitUsuario(),
+            passportHelper.authenticate("bearer", { session: false })
+        );
+        this.router.get(
+            `${this.path}/all`,
+            this.version({
+                "1.0.0": this.controller.getAll,
+            })
+        );
+        this.router.post(
+            `${this.path}/insert`,
+            new ValidateDTOMiddleware(AreasDTO, AreasSchema.properties).validate(),
+            (req, res) => {
                 this.version({
-                    "1.0.0": this.controller.getAll,
-                })
-            );
-           this.router.post(
-               `${this.path}/insert`,
-              new ValidateDTOMiddleware(AreasDTO).validate(),
-               (req, res) => {
-                   this.version({
-                       "1.0.0": this.controller.insertOne(req, res),
-                   });
-               }
-           );
-        } catch (error) {
-            console.error("Error en las rutas");
-            throw error;
-        }
+                    "1.0.0": this.controller.insertOne(req, res),
+                });
+            }
+        );
     }
 }
 export default AreaRoutes;
