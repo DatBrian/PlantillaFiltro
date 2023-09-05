@@ -5,24 +5,69 @@ class UserSchema {
     constructor(database) {
         this.database = database;
         this.entity = "user";
-        this.Collection = database.collection(this.entity);
+        this.collection = database.collection(this.entity);
     }
 
     static registerProperties(){
         return{
-            registerProperties
+            _id: {
+               bsonType: "objectId"
+            },
+            user: {
+                bsonType: "string"
+            },
+            contraseña: {
+                bsonType: "string"
+            }
         }
     }
 
     static properties(){
         return {
-           properties
+            _id: {
+                bsonType: "objectId"
+            },
+            user: {
+                bsonType: "string"
+            },
+            contraseña: {
+                bsonType: "string"
+            },
+            roles: {
+                bsonType: "array",
+                items: {
+                    bsonType: "string"
+                }
+            },
+            permisos: {
+                bsonType: "object",
+                properties: {
+                    "/api/medicamento": {
+                        bsonType: "array",
+                        items: {
+                            bsonType: "string"
+                        }
+                    }
+                }
+            }
         };
     }
 
     async generateCollection() {
         try {
-          createSquema
+            await this.database.createCollection(this.entity, {
+                capped: true,
+                size: 16000,
+                max: 10,
+                validator: {
+                    $jsonSchema: {
+                        bsonType: "object",
+                        additionalProperties: false,
+                        required: ["user", "contraseña", "roles", "permisos"],
+                        properties: UserSchema.properties
+                    }
+                }
+          })
         } catch (error) {
             throw error;
         }
@@ -79,7 +124,26 @@ class UserSchema {
     //! Es tamal
     async createData() {
         try {
-         insertData
+            await this.collection.insertMany([
+                {
+                    user: "Miguel",
+                    contraseña: await UserSchema.encryptPassword("miguel"),
+                    roles: [
+                        "admin"
+                    ],
+                    permisos: {
+                        "/api/medicamento": [
+                            "1.0.0",
+                            "1.0.1",
+                            "1.0.2",
+                            "1.0.3",
+                            "1.0.4",
+                            "1.0.5",
+                            "1.1.0"
+                        ]
+                    }
+                }
+         ])
         } catch (error) {
             throw error;
         }

@@ -6,33 +6,6 @@
 
 # CAMBIAR ROLES BRIAN CAMBIALOS !!!!!!!!!!!!!!!!!1111
 
-1. **Comercial:**
-   - Ventas y Marketing: Promoción de eventos, boletos de entrada, membresías y actividades especiales para atraer visitantes.
-   - Tiendas de Regalos: Operación de tiendas donde se venden souvenirs, ropa y juguetes relacionados con los animales.
-   - Gastronomía: Restaurantes, cafeterías y áreas de comida para ofrecer opciones alimenticias a los visitantes.
-
----
-
-# Análisis de Requerimientos para el proyecto de en un Zoológico:
-
-1. **Compras y Pedidos:**
-   - Compra de boletos y membresías.
-   - Compra de alimentos y souvenirs.
-2. **Información sobre Animales y Exhibiciones:**
-   - Detalles de cada especie y exhibición.
-   - Información educativa sobre los animales.
-3. **Educación y Programas:**
-   - Detalles de programas educativos y visitas guiadas.
-   - Recursos educativos para maestros y estudiantes.
-4. **Gestión de Eventos:**
-   - Reserva de eventos y servicios para ocasiones especiales.
-
-# DATABASE A USAR
-
-Este es el esquema de la base de datos en <span style="color:orange;">MongoDB</span> 
-<img src="./img/db.png"><br><br>
-
-
 # DEPENDENCIAS IMPLEMENTADAS
 
 ```JSON
@@ -119,26 +92,6 @@ Diseño para la insercion de varios Datos para la tabla correspondiente alojasod
 
 <img src="./img/datainsert.png"><br><br>
 
-## Segundo Metodo: Usuario Temporal
-
-Se creo un usaurio temporal para acceder a la base de datos original con las colecciones ya creadas y sus respectivos inserts
-de prueba, para esto hay que ingresar en las variables de entorno dentro del archivo [.env](.env)
-
-Hemos Creado un Usuario con acceso a la db de Moongo para el testeo:
-
-```
-HOST = localhost
-PORT = 5000
-API_VERSION = v1
-
-DB_USER = miguel
-DB_NAME = db_zoologico
-DB_PASSWORD = miguel
-
-JWT_PRIVATE_KEY= ""
-```
-
-## Tercer Metodo: Generacion Automatizada de generacion de Esquemas, Colecciones e Inserts (by Brian Kaleth Melo)
 
 En este metodo consiste en generar automaticamente todos los esquemas y colecciones con sus respectivos datos de prueba al levantar el servidor, para utilizar este metodo, tendras que tener un cluster activo en mongoDB, donde se va a configurar la base de datos, Teniendo una cuenta en MongoDB Atlas, ya registrado indicado en la documentacion
 https://github.com/JoseCabrejoVillarCampus/mongoDocumentacion.
