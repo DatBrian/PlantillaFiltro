@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "bcryptjs": "2.4.3",
     "express-rate-limit": "6.9.0",
     "express-routemap": "1.6.0",
     "express-session": "1.17.3",

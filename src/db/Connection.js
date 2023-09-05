@@ -7,15 +7,15 @@ class Connection {
         this.client = new MongoClient(this.getUri());
         this.db = null;
     }
-
+    
     getUri() {
-        return `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.rkhsbgh.mongodb.net/?retryWrites=true&w=majority`;
+        return `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.${process.env.DB_IDENTIFIER}.mongodb.net/${process.env.DB_NAME}`;
     }
 
     async connect() {
         try {
             await this.client.connect();
-            this.db = this.client.db("plantilla");
+            this.db = this.client.db();
         } catch (error) {
             console.error("Error al conectar con la base de datos:", error);
             throw error;
