@@ -4,6 +4,7 @@
 
 **Funcionamiento de un Zoológico a Nivel Comercial:**
 
+# CAMBIAR ROLES BRIAN CAMBIALOS !!!!!!!!!!!!!!!!!1111
 
 1. **Comercial:**
    - Ventas y Marketing: Promoción de eventos, boletos de entrada, membresías y actividades especiales para atraer visitantes.
