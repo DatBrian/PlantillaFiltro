@@ -34,7 +34,7 @@ class MedicamentoSchema{
                 description: "El campo proveedor_medicamento es obligatorio"
             },
             fecha_caducidad: {
-                bsonType: "string",
+                bsonType: "date",
                 description: "El campo caducidad es obligatorio"
             }
         }
@@ -71,7 +71,7 @@ class MedicamentoSchema{
                     unidades: 50,
                     precio: 5000,
                     proveedor: "Paracetamol_proveedor",
-                    fecha_caducidad: "30-01-2024"
+                    fecha_caducidad: new Date("01-30-2025")
                 },
                 {
                     nombre: "Acetaminofén",
@@ -79,7 +79,15 @@ class MedicamentoSchema{
                     unidades: 100,
                     precio: 2000,
                     proveedor: "Acetaminofén_proveedor",
-                    fecha_caducidad: "30-01-2025"
+                    fecha_caducidad: new Date("01-01-2023")
+                },
+                {
+                    nombre: "Aspirina",
+                    cantidad: "50/mg",
+                    unidades: 49,
+                    precio: 500,
+                    proveedor: "Proveedor A",
+                    fecha_caducidad: new Date("01-02-2024")
                 }
             ])
         } catch (error) {

@@ -81,7 +81,7 @@ class App extends Connection {
 
     initRoutes(routes) {
         routes.forEach((route) => {
-            this.app.use(`/api/${process.env.API_VERSION}`, route.router);
+            this.app.use(`/api${route.path}`, route.router);
         });
     }
 
